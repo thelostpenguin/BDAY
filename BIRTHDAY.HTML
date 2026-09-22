@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, initial-scale=1.0">
+    <title>For Darshi | After Reading Frozen Feelings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1200px;
+            margin: 0 auto;
+            background: #091522;
+            color: #e2e8f0;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            background: linear-gradient(180deg, #071019 0%, #0c1e30 50%, #111a24 100%);
+            min-height: 100vh;
+        }
+
+        /* Canvas Background for Particles */
+        #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Container & Layout */
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        /* Header / Hero */
+        .header {
+            margin-bottom: 50px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            text-shadow: 0 0 20px rgba(148, 163, 184, 0.3);
+            margin-bottom: 15px;
+        }
+
+        .sub-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #cbd5e1;
+        }
+
+        /* Main Love Letter Card */
+        .letter-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 45px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideUp 1.5s ease-out;
+        }
+
+        .letter-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .letter-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        /* Interactive Cards Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(226, 232, 240, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: #f1f5f9;
+            margin-bottom: 10px;
+        }
+
+        .card-prompt {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .card-content {
+            display: none;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+            margin-top: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Interactive Penguin Button Section */
+        .interaction-section {
+            margin: 40px 0;
+        }
+
+        .hug-btn {
+            background: linear-gradient(135deg, #38bdf8 0%, #1e40af 100%);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hug-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+        }
+
+        #response-msg {
+            margin-top: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #38bdf8;
+            min-height: 30px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            font-size: 0.85rem;
+            color: #64748b;
+            letter-spacing: 1px;
+        }
+
+        /* Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="snow-canvas"></canvas>
+
+    <div class="container">
+        <div class="header">
+            <p class="tagline">An After-Reading Experience</p>
+            <h1>To Darshi, My Frozen Feelings Unthawed</h1>
+            <p class="sub-title">A special dedication from thelostpenguin</p>
+        </div>
+
+        <div class="letter-card">
+            <h2>You Finished The Story...</h2>
+            <p class="letter-text">
+                You read every single page, every quiet word, and every unspoken feeling hidden between the lines. 
+                <i>Frozen Feelings</i> was written for you—to encapsulate moments that words could rarely express. 
+                Thank you for taking this journey with me, and for keeping my heart warm.
+            </p>
+        </div>
+
+        <div class="grid">
+            <div class="card" onclick="revealCard(this)">
+                <div class="card-title">A Hidden Memory</div>
+                <div class="card-prompt">Click to open</div>
+                <div class="card-content">Every chapter held a piece of us. Thank you for reading with as much love as was put into writing it.</div>
+            </div>
+
+            <div class="card" onclick="revealCard(this)">
+                <div class="card-title">A Promise</div>
+                <div class="card-prompt">Click to open</div>
+                <div class="card-content">No matter how cold or distant the world gets, you will always be my softest place to rest.</div>
+            </div>
+
+            <div class="card" onclick="revealCard(this)">
+                <div class="card-title">The Truth</div>
+                <div class="card-prompt">Click to open</div>
+                <div class="card-content">You were never just a reader, Darshi. You are the entire reason the story exists.</div>
+            </div>
+        </div>
+
+        <div class="interaction-section">
+            <button class="hug-btn" onclick="sendHug()">Send a Warm Hug to thelostpenguin 🤍</button>
+            <div id="response-msg"></div>
+        </div>
+
+        <footer>
+            Written & Designed with endless love by thelostpenguin, forever for Darshi.
+        </footer>
+    </div>
+
+    <script>
+        // Reveal Card Functionality
+        function revealCard(element) {
+            const prompt = element.querySelector('.card-prompt');
+            const content = element.querySelector('.card-content');
+            
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                prompt.style.display = "block";
+            } else {
+                content.style.display = "block";
+                prompt.style.display = "none";
+            }
+        }
+
+        // Send Hug Functionality
+        function sendHug() {
+            const msg = document.getElementById('response-msg');
+            msg.innerText = "Hug received! Thelostpenguin's heart is completely warm now. ✨";
+        }
+
+        // Snow / Particle Effect Canvas
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = 60;
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                density: Math.random() * particleCount,
+                opacity: Math.random() * 0.5 + 0.3
+            });
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+
+            for (let i = 0; i < particleCount; i++) {
+                let p = particles[i];
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, true);
+                ctx.fill();
+
+                p.y += Math.cos(p.density) + 1 + p.radius / 2;
+                p.x += Math.sin(p.density) * 0.5;
+
+                if (p.y > canvas.height) {
+                    particles[i] = {
+                        x: Math.random() * canvas.width,
+                        y: 0,
+                        radius: p.radius,
+                        density: p.density,
+                        opacity: p.opacity
+                    };
+                }
+            }
+            requestAnimationFrame(drawParticles);
+        }
+
+        drawParticles();
+    </script>
+</body>
+</html>
